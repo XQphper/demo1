@@ -1,7 +1,7 @@
 <?php
 include '../vendor/autoload.php';
 
-$database = new \Medoo\medoo([
+$database = new Medoo\Medoo([
     // 必须配置项
     'database_type' => 'mysql',
     'database_name' => 'demo1',
