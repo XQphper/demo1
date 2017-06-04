@@ -7,12 +7,6 @@
 define("TOKEN", "weixin");
 $wechatObj = new wechatCallbackapiTest();
 
-include "./db.php";
-$data = array(
-	'xml' =>time(),
-);
-$database ->insert('xml' ,$data);
-die();
 
 if ($_GET['echostr'])
 {
@@ -44,6 +38,7 @@ class wechatCallbackapiTest
 		// $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
 		 $postStr = file_get_contents('php://input');
 		 file_put_contents('./1.txt', json_decode($postStr));
+
         include "./db.php";
         $data = array(
             'xml' =>$postStr,
