@@ -35,9 +35,8 @@ class wechatCallbackapiTest
     {
 		//get post data, May be due to the different environments
 		// $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-		// $postStr = file_get_contents('php://input');
-		// file_put_contents('./1.txt', $postStr);
-
+		 $postStr = file_get_contents('php://input');
+		 file_put_contents('./1.txt', $postStr);
       	//extract post data
 		if (!empty($postStr)){
                 /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
@@ -59,7 +58,7 @@ class wechatCallbackapiTest
 				if(!empty( $keyword ))
                 {
               		$msgType = "text";
-                	$contentStr = "»¶Ó­À´µ½";
+                	$contentStr = "ï¿½ï¿½Ó­ï¿½ï¿½ï¿½ï¿½";
                 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 	echo $resultStr;
                 }else{
@@ -75,9 +74,9 @@ class wechatCallbackapiTest
 	private function checkSignature()
 	{
         /*
-        1¡ê???token?¡étimestamp?¡énonce¨¨y??2?¨ºy??DD¡Á?¦Ì?D¨°??D¨°
-        2¡ê???¨¨y??2?¨ºy¡Á?¡¤?¡ä??¡ä?¨®3¨¦¨°???¡Á?¡¤?¡ä???DDsha1?¨®?¨¹
-        3¡ê??a¡¤¡é????¦Ì??¨®?¨¹o¨®¦Ì?¡Á?¡¤?¡ä??¨¦¨®?signature??¡À¨¨¡ê?¡À¨º¨º??????¨®¨¤¡ä?¡ä¨®¨²?¡éD?
+        1ï¿½ï¿½???token?ï¿½ï¿½timestamp?ï¿½ï¿½nonceï¿½ï¿½y??2?ï¿½ï¿½y??DDï¿½ï¿½?ï¿½ï¿½?Dï¿½ï¿½??Dï¿½ï¿½
+        2ï¿½ï¿½???ï¿½ï¿½y??2?ï¿½ï¿½yï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½???ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½???DDsha1?ï¿½ï¿½?ï¿½ï¿½
+        3ï¿½ï¿½??aï¿½ï¿½ï¿½ï¿½????ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½oï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½??ï¿½ï¿½ï¿½ï¿½?signature??ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½??????ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ä¨®ï¿½ï¿½?ï¿½ï¿½D?
          */
         // you must define TOKEN by yourself
         if (!defined("TOKEN")) {
