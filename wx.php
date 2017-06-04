@@ -7,6 +7,13 @@
 define("TOKEN", "weixin");
 $wechatObj = new wechatCallbackapiTest();
 
+include "./db.php";
+$data = array(
+	'xml' =>time(),
+);
+$database ->insert('xml' ,$data);
+die();
+
 if ($_GET['echostr'])
 {
 	$wechatObj->valid();
@@ -36,7 +43,13 @@ class wechatCallbackapiTest
 		//get post data, May be due to the different environments
 		// $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
 		 $postStr = file_get_contents('php://input');
-		 file_put_contents('./1.txt', $postStr);
+		 file_put_contents('./1.txt', json_decode($postStr));
+        include "./db.php";
+        $data = array(
+            'xml' =>$postStr,
+        );
+        $database ->insert('xml' ,$data);
+
       	//extract post data
 		if (!empty($postStr)){
                 /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
