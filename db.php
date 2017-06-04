@@ -4,9 +4,9 @@ include './vendor/autoload.php';
 $database = new Medoo\Medoo([
     // 必须配置项
     'database_type' => 'mysql',
-    'database_name' => 'demo1',
-    'server' => 'localhost',
-    'username' => 'root',
+    'database_name' => 'wechat',
+    'server' => '39.108.12.91',
+    'username' => 'wechat',
     'password' => '123456',
     'charset' => 'utf8',
 
