@@ -49,10 +49,10 @@
       <file leaf-file-name="wx.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wx.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="47" column="10" lean-forward="true" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+            <state relative-caret-position="-693">
+              <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
               <folding>
-                <marker date="1496561538994" expanded="true" signature="1515:1774" ph="..." />
+                <marker date="1496561938857" expanded="true" signature="1473:1732" ph="..." />
               </folding>
             </state>
           </provider>
@@ -61,7 +61,7 @@
       <file leaf-file-name="db.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
+            <state relative-caret-position="111">
               <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
               <folding />
             </state>
@@ -247,12 +247,12 @@
       <workItem from="1496406494916" duration="6747000" />
       <workItem from="1496554794602" duration="3356000" />
       <workItem from="1496558329353" duration="198000" />
-      <workItem from="1496558697514" duration="2880000" />
+      <workItem from="1496558697514" duration="3246000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13181000" />
+    <option name="totallyTimeSpent" value="13547000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -350,7 +350,7 @@
         <state relative-caret-position="798">
           <caret line="40" column="30" lean-forward="true" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
           <folding>
-            <marker date="1496561538994" expanded="true" signature="1515:1774" ph="..." />
+            <marker date="1496561938857" expanded="true" signature="1473:1732" ph="..." />
           </folding>
         </state>
       </provider>
@@ -387,7 +387,7 @@
         <state relative-caret-position="1218">
           <caret line="60" column="58" lean-forward="false" selection-start-line="60" selection-start-column="58" selection-end-line="60" selection-end-column="58" />
           <folding>
-            <marker date="1496561538994" expanded="true" signature="1515:1774" ph="..." />
+            <marker date="1496561938857" expanded="true" signature="1473:1732" ph="..." />
           </folding>
         </state>
       </provider>
@@ -413,7 +413,7 @@
         <state relative-caret-position="819">
           <caret line="41" column="8" lean-forward="false" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
           <folding>
-            <marker date="1496561538994" expanded="true" signature="1515:1774" ph="..." />
+            <marker date="1496561938857" expanded="true" signature="1473:1732" ph="..." />
           </folding>
         </state>
       </provider>
@@ -477,7 +477,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
+        <state relative-caret-position="111">
           <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
           <folding />
         </state>
@@ -485,10 +485,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wx.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="47" column="10" lean-forward="true" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
+        <state relative-caret-position="-693">
+          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
           <folding>
-            <marker date="1496561538994" expanded="true" signature="1515:1774" ph="..." />
+            <marker date="1496561938857" expanded="true" signature="1473:1732" ph="..." />
           </folding>
         </state>
       </provider>
