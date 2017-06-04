@@ -37,13 +37,16 @@ class wechatCallbackapiTest
 		//get post data, May be due to the different environments
 		// $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
 		 $postStr = file_get_contents('php://input');
-		 file_put_contents('./1.txt', json_decode($postStr));
+		 var_dump($postStr);
+		 file_put_contents('./1.txt' , $postStr);
+//		 file_put_contents('./1.txt', json_decode($postStr));
 
-        include "./db.php";
-        $data = array(
-            'xml' =>$postStr,
-        );
-        $database ->insert('xml' ,$data);
+//        include "./db.php";
+//
+//        $data = array(
+//            'xml' =>$postStr,
+//        );
+//        $database ->insert('xml' ,$data);
 
       	//extract post data
 		if (!empty($postStr)){
