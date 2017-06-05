@@ -1,115 +1,16 @@
 <?php
-/**
-  * wechat php test
-  */
 
-//define your token
-define("TOKEN", "weixin");
-$wechatObj = new wechatCallbackapiTest();
+    include './wxModel.php';
 
+    define("TOKEN", "weixin");
 
-if ($_GET['echostr'])
-{
-	$wechatObj->valid();
-}
-else
-{
-	$wechatObj->responseMsg();
-}
+    $wechatObj = new wxModel();
 
-$wechatObj->valid();
+    if(isset($_GET['echostr'])) {
 
-class wechatCallbackapiTest
-{
-	public function valid()
-    {
-        $echoStr = $_GET["echostr"];
+        $wechatObj->valid();
+    }else{
 
-        //valid signature , option
-        if($this->checkSignature()){
-        	echo $echoStr;
-        	exit;
-        }
+        //接收微信服务器发送过来的xml
+        $wechatObj->responseMsg();
     }
-
-    public function responseMsg()
-    {
-		//get post data, May be due to the different environments
-//		 $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
-		 $postStr = file_get_contents('php://input');
-
-		 file_put_contents('./1.txt', $postStr);
-
-        include "./db.php";
-        $data = array(
-            'xml' =>time(),
-        );
-        $database->insert('xml' ,$data);
-
-      	//extract post data
-		if (!empty($postStr)){
-                /* libxml_disable_entity_loader is to prevent XML eXternal Entity Injection,
-                   the best way is to check the validity of xml by yourself */
-                libxml_disable_entity_loader(true);
-              	$postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
-                $fromUsername = $postObj->FromUserName;
-                $toUsername = $postObj->ToUserName;
-                $keyword = trim($postObj->Content);
-                $time = time();
-                $textTpl = "<xml>
-							<ToUserName><![CDATA[%s]]></ToUserName>
-							<FromUserName><![CDATA[%s]]></FromUserName>
-							<CreateTime>%s</CreateTime>
-							<MsgType><![CDATA[%s]]></MsgType>
-							<Content><![CDATA[%s]]></Content>
-							<FuncFlag>0</FuncFlag>
-							</xml>"; 
-				if(!empty( $keyword ))
-                {
-              		$msgType = "text";
-                	$contentStr = "Welcome to wechat world";
-                	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
-                	echo $resultStr;
-                }else{
-                	echo "Input something...";
-                }
-
-        }else {
-        	echo "";
-        	exit;
-        }
-    }
-		
-	private function checkSignature()
-	{
-        /*
-        1��???token?��timestamp?��nonce��y??2?��y??DD��?��?D��??D��
-        2��???��y??2?��y��?��?��??��?��3����???��?��?��???DDsha1?��?��
-        3��??a����????��??��?��o����?��?��?��??����?signature??������?������??????������?�䨮��?��D?
-         */
-        // you must define TOKEN by yourself
-        if (!defined("TOKEN")) {
-            throw new Exception('TOKEN is not defined!');
-        }
-        
-        $signature = $_GET["signature"];
-        
-        $timestamp = $_GET["timestamp"];
-        $nonce = $_GET["nonce"];
-		$token = TOKEN;
-		
-        $tmpArr = array($token, $timestamp, $nonce);
-        // use SORT_STRING rule
-		sort($tmpArr, SORT_STRING);
-		$tmpStr = implode( $tmpArr );
-		$tmpStr = sha1( $tmpStr );
-		
-		if( $tmpStr == $signature ){
-			return true;
-		}else{
-			return false;
-		}
-	}
-}
-
-?>
