@@ -64,7 +64,7 @@ class wxModel
             //根据类型判断关键字，返回数据给用户
             if($msgtype == 'text') {
 
-            	//判断关键字是否是图文
+            	//实例1判断关键字是否是图文
             	if($keyword == '新闻') {
 
             		//php + mysql 读取数据库 ，拿到文章列表的数据
@@ -131,7 +131,7 @@ EOT;
 
 				}
 
-				  //接收关键字美女 返回美女图片
+				  //实例2:接收关键字帅哥 返回帅哥图片
 
 				if($keyword == '帅哥') {
 
@@ -158,9 +158,8 @@ EOT;
 				}
             }
 
-            //判断是否发生了事件的推送
+            //实例3:判断是否发生了事件的推送
             if($msgtype == 'event') {
-
             	$event = $postObj->Event;
             	//订阅事件(关注、取消事件)用户未关注时，进行关注后的事件推送
             	if($event == 'subscribe') {
@@ -174,7 +173,7 @@ EOT;
 							 </xml>"; 
 
 					$time = time();
-					$msgtype = $postObj->MsgType;
+					$msgtype = 'text';
 					$content = "欢迎来到自娱自乐公众号开发世界!请输入帅哥查看图片，有效期仅限今天";  
 
 					$res = sprintf($textTpl, $fromusername, $tousername, $time, $msgtype, $content);
@@ -208,7 +207,64 @@ EOT;
         }
     }
 
-    //验证服务器地址的有效性
+    //实例4：获取access_Token curl请求 ，获取返回的数据
+    public function getAccessToken ()
+    {
+        session_start();
+
+    	//判断session中是否有access_token这个值 及是否在有效期内
+    	if($_SESSION['access_token'] && (time()-$_SESSION['expire_time']) < 7200 ) {
+
+    			return $_SESSION['access_token'];
+    	}else{
+
+    	$appID = "wxedd491740234652e";
+		$appsecret = "3c8d369477fff7e9c612f6adc64a0900";
+		$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appID."&secret=".$appsecret;
+    	//没有则写入session
+    	$access_token = $this->jsonToArray($this->getData($url))['access_token'];
+
+    	$_SESSION['access_token'] = $access_token;
+    	$_SESSION['expire_time'] = time(); 
+
+    	return access_token;
+    	}
+    }
+
+    //获取accessToken的值
+
+    public function getData($url, $method="GET", $datajson='') {
+        //1.初始化
+        $ch = curl_init();
+
+        //2.设置Curl选项
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1); //0是以页面显示 1是以代码显示
+        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);
+        //强制转大写，判断方法是否是POST
+         if(strtoupper($method)=="POST"){
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $datajson);
+        }
+
+        //3.执行cURL请求
+        $ret = curl_exec($ch);
+
+        //4.关闭资源
+        curl_close($ch);
+
+        //返回
+       return $ret;
+    }
+    //JSON转化为数组
+    public function jsonToArray($json) {
+
+    	$arr = json_decode($json , true);
+
+    	return $arr;
+    }
+
+     //验证服务器地址的有效性
     private function checkSignature()
     {
         /*
@@ -239,58 +295,6 @@ EOT;
         }
     }
 
-
-    //curl请求 ，获取返回的数据
-    public function getAccessToken ()
-    {
-
-    	//判断session中是否有access_token这个值 及是否在有效期内
-    	if($_SESSION['access_token'] && (time()-$_SESSION['expire_time']) < 7200 ) {
-
-    			return $_SESSION['access_token'];
-    	}else{
-
-    	$appID = "wxedd491740234652e";
-		$appsecret = "3c8d369477fff7e9c612f6adc64a0900";
-		$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appID."&secret=".$appsecret;
-    	//没有则写入session
-    	$access_token = $this->jsonToArray($this->getData($url))['access_token'];
-
-    	$_SESSION['access_token'] = $access_token;
-    	$_SESSION['expire_time'] = time(); 
-
-    	return access_token;
-    	}
-    }
-
-    //获取accessToken的值
-
-    public function getData() {
-    	//1.初始化
-	    $ch = curl_init();
-
-	    //2.设置Curl选项
-	    curl_setopt($ch,CURLOPT_URL,$url);
-	    curl_setopt($ch,CURLOPT_RETURNTRANSFER,1); //0是以页面显示 1是以代码显示
-	    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);
-
-	    //3.执行cURL请求
-	    $ret = curl_exec($ch);
-
-	    //4.关闭资源
-	    curl_close($ch);
-
-	    //返回
-	   return $res;
-    }
-
-    //JSON转化为数组
-    public function jsonToArray($json) {
-
-    	$arr = json_decode($json , true);
-
-    	return $arr;
-    }
 }
 
 ?>
