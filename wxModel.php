@@ -163,7 +163,7 @@ EOT;
 
             	$event = $postObj->Event;
             	//订阅事件(关注、取消事件)用户未关注时，进行关注后的事件推送
-            	if($event == 'Event') {
+            	if($event == 'subscribe') {
 					$textTpl = "<xml>
 								<ToUserName><![CDATA[%s]]></ToUserName>
 								<FromUserName><![CDATA[%s]]></FromUserName>
@@ -178,7 +178,7 @@ EOT;
 					$content = "欢迎来到自娱自乐公众号开发世界!请输入帅哥查看图片，有效期仅限今天";  
 
 					$res = sprintf($textTpl, $fromusername, $tousername, $time, $msgtype, $content);
-					echo $res;
+                    echo $res;
 
             		
             	}
