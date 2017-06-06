@@ -6,3 +6,10 @@
 
 // echo $url;
 
+include './wxModel.php';
+
+$model = new wxModel();
+
+$ret = $model->getAccessToken();
+
+echo $ret;

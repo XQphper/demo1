@@ -1,5 +1,6 @@
 <?php
 
+
 include "./wxModel.php";
 
 $wxObj = new wxModel();
@@ -26,7 +27,7 @@ $arr = array(
                 ),
                 array(
                     "type"=>"click",
-                    "name"=>urlencode("美妆"),
+                    "name"=>urlencode("美女"),
                     "key"=>"22000"
                 )
             )
@@ -50,6 +51,13 @@ $url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$wxObj->get
 //curl post 请求
 $datajson = urldecode(json_encode($arr));
 
+// echo $datajson;
+
 $ret = $wxObj->getData($url,"POST", $datajson);
 
-// echo $ret;
+echo $ret;
+
+//天气预报的key值
+//AppKey：aa48cda31fe51a4a72820d5e6004ecaf
+
+//   http://v.juhe.cn/weather/index?format=2&cityname=广州&key=aa48cda31fe51a4a72820d5e6004ecaf
